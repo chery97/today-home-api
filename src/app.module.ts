@@ -4,18 +4,24 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from "./orm.config";
 import { UserModule } from './api/user/user.module';
-import { LoginController } from './common/login/login.controller';
-import { LoginModule } from './common/login/login.module';
-import {LoginService} from "./common/login/login.service";
 import {JwtService} from "@nestjs/jwt";
+import { AuthService } from './common/auth/auth.service';
+import { AuthModule } from './common/auth/auth.module';
+import { UserService } from "./api/user/user.service";
+import { ConfigModule } from "@nestjs/config";
+import { AuthController } from "./common/auth/auth.controller";
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      cache: true,
+      isGlobal: true,
+    }),
     TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
     UserModule,
-    LoginModule,
+    AuthModule,
   ],
-  controllers: [AppController, LoginController],
-  providers: [AppService, LoginService, JwtService],
+  controllers: [AppController, AuthController],
+  providers: [AppService, JwtService, AuthService, UserService],
 })
 export class AppModule {}
