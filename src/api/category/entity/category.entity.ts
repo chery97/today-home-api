@@ -1,22 +1,30 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 @Entity()
 export class category {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  @IsNumber()
+  id: number;
 
-    @Column()
-    cateNm: string;
+  @Column()
+  @IsString()
+  cateNm: string;
 
-    @Column()
-    cateCd: string;
+  @IsString()
+  @Column()
+  cateCd: string;
 
-    @Column({ nullable: true, default: null })
-    goodsNo: number | null;
+  @Column({ default: null })
+  @IsNumber()
+  @IsOptional()
+  goodsNo: number | null;
 
-    @Column({ nullable: true, default: null })
-    regDt: Date;
+  @IsOptional()
+  @Column({ default: null })
+  regDt: Date;
 
-    @Column({ nullable: true, default: null })
-    updateDt: Date | null;
+  @IsOptional()
+  @Column({ default: null })
+  updateDt: Date | null;
 }
