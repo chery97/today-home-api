@@ -12,6 +12,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthController } from './common/auth/auth.controller';
 import { UserRepository } from './api/user/repository/user.repository';
 import { UserController } from './api/user/user.controller';
+import { CategoryModule } from './api/category/category.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UserController } from './api/user/user.controller';
     TypeOrmModule.forRootAsync({ useFactory: ormConfig }),
     UserModule,
     AuthModule,
+    CategoryModule,
   ],
   controllers: [AppController, AuthController, UserController],
   providers: [AppService, JwtService, AuthService, UserService, UserRepository],
