@@ -10,10 +10,10 @@ function ormConfig(): TypeOrmModuleOptions {
   const ormconfig: TypeOrmModuleOptions = {
     type: 'mysql',
     database: 'today_home',
-    host: '15.164.78.211',
+    host: '3.37.78.80',
     port: 3306,
     username: 'root',
-    password: 'geek2020',
+    password: 'geek@2020',
     logging: true,
     synchronize: commonConf.SYNCRONIZE,
     entities: commonConf.ENTITIES,
